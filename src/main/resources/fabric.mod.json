@@ -3,9 +3,9 @@
 	"id": "valkib",
 	"version": "${version}",
 	"name": "ValkIB",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "ValkIB Mod, Adds an Icebreaker Block for VS Ships. Slightly modified by Raeffi",
 	"authors": [
-		"Me!"
+		"JSJBDEV"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",

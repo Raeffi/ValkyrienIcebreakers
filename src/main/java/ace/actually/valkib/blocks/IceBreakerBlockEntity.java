@@ -27,13 +27,18 @@ public class IceBreakerBlockEntity extends BlockEntity {
                 ServerShip ship = VSGameUtilsKt.getShipManagingPos(serverWorld,pos);
                 Vec3d middle = VSGameUtilsKt.toWorldCoordinates(ship, Vec3d.of(pos));
                 BlockPos block = new BlockPos((int) middle.x, (int) middle.y, (int) middle.z);
-                for (int i = -1; i < 2; i++) {
-                    for (int j = -1; j < 2; j++) {
-                        for (int k = -1; k < 2; k++) {
-                            if(serverWorld.getBlockState(block.add(i,j,k)).isIn(BlockTags.ICE))
-                            {
-                                serverWorld.breakBlock(block.add(i,j,k),true);
-                                serverWorld.setBlockState(block.add(i,j,k),Blocks.WATER.getDefaultState());
+                int radius = 6;
+                int diameter = radius*2;
+                for (int i = 0; i < diameter; i++) {
+                    for (int j = 0; j < diameter; j++) {
+                        for (int k = 0; k < diameter; k++) {
+
+                            if( ( (i-radius)*(i-radius) + (j-radius)*(j-radius) ) < (radius*radius) ){
+                                if(serverWorld.getBlockState(block.add((i-radius),(k-radius),(j-radius))).isOf(Blocks.ICE))
+                                {
+                                    serverWorld.breakBlock(block.add((i-radius),(k-radius),(j-radius)),true);
+                                    serverWorld.setBlockState(block.add((i-radius),(k-radius),(j-radius)),Blocks.WATER.getDefaultState());
+                                }
                             }
                         }
                     }
